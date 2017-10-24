@@ -5,3 +5,40 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+Food.delete_all
+Food.create!([
+  {name: 'Tenderloin Steak',
+  description:
+    %{<p>
+      <em>Daging Terbaik dari Setiap Sapi</em>
+      Terderloin hanya terdapat di bagian tengah sapi.
+      Kami menyajikan Terderloin dari 3 negara asal: United States, New Zealand, dan India.
+      Sudah coba Tenderloin steak racikan kami?
+      </p>
+    },
+  image_url: 'tenderloin.png',
+  price: 95000.00},
+  {name: 'Satay',
+  description:
+    %{<p>
+      <em>Daging Tusuk Spesial Indonesia</em>
+      Satay adalah daging tusuk yang dibakar dan dibalut dengan bumbu kacang istimewa dari negeri Madura.
+      Sudah mencicipinya?
+      </p>
+    },
+  image_url: 'satay.png',
+  price: 55000.00},
+  {name: 'Pecel',
+  description:
+    %{<p>
+      <em>Makanan Sehat untuk Vegetarian</em>
+      Pecel adalah makanan khas beberapa kota di Indonesia, seperti Blitar, Nganjuk, dan Kediri.
+      Pecel yang kami sajikan adalah kombinasi dari pecel-pecel yang ada di Indonesia.
+      Dijamin rasanya gado-gado dan ciamik soro!
+      </p>
+    },
+  image_url: 'pecel.png',
+  price: 25000.00}
+])
