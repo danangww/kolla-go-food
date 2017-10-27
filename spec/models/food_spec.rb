@@ -19,4 +19,5 @@ describe Food do
   end
   it "is invalid without a description"
   it "is invalid with a duplicate name"
+  it "is valid with a name and description"
 end
