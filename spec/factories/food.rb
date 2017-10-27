@@ -5,4 +5,10 @@ FactoryGirl.define do
     price 10000.0
     image_url 'http://url.com/photo.jpg'
   end
+
+  factory :invalid_food, parent: :food do
+    name nil
+    description nil
+    price 10000.0
+  end
 end
