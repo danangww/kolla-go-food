@@ -109,4 +109,62 @@ describe Food do
       end
     end
   end
+
+  describe 'validate price' do
+    before :each do
+      @food1 = Food.create(
+        name: 'Nasi Uduk',
+        description: 'Betawi style steamed rice cooked in coconut milk. Delicious!',
+        price: 'price'
+        )
+      @food2 = Food.create(
+        name: 'Nasi Uduk',
+        description: 'Betawi style steamed rice cooked in coconut milk. Delicious!',
+        price: 0.0
+        )
+      @food3 = Food.create(
+        name: 'Nasi Uduk',
+        description: 'Betawi style steamed rice cooked in coconut milk. Delicious!',
+        price: 10000.0
+        )
+    end
+    context 'with non-numeric values for price' do
+      it 'will not accept non numeric values' do
+        expect(@food1.errors[:price]).to include('is not a number')
+      end
+    end
+    context 'with numeric values for price' do
+      it 'will accept numeric values greater than or equal 0.01' do |variable|
+        expect(@food3).to be_valid
+      end
+      it 'will not accept price less than 0.01' do
+        expect(@food2.errors[:price]).to include('must be greater than or equal to 0.01')
+      end
+    end
+  end
+
+  describe 'validate url' do
+    before :each do
+      @food1 = Food.create(
+        name: 'Nasi Uduk',
+        description: 'Betawi style steamed rice cooked in coconut milk. Delicious!',
+        price: 10000.0,
+        image_url: 'http://url.com/photo.doc'
+        )
+      @food2 = Food.create(
+        name: 'Nasi Uduk',
+        description: 'Betawi style steamed rice cooked in coconut milk. Delicious!',
+        price: 10000.0,
+        image_url: 'http://url.com/photo.jpg'
+        )
+    end
+    context 'with extension for image_url' do
+      it 'will not accept if image_url ends with anything other than .gif, .jpg, and .png' do
+        expect(@food1.errors[:image_url]).to include('must be a URL for GIF, JPG, or PNG image.')
+      end
+      it 'will accept if image_url ends with .gif, .jpg, and .png' do
+        expect(@food2).to be_valid
+      end
+    end
+  end
 end
