@@ -2,7 +2,8 @@ require 'rails_helper'
 
 describe Food do
   it 'has a valid factory' do
-    expect(FactoryGirl.build(:food)).to be_valid
+    # expect(FactoryGirl.build(:food)).to be_valid
+    expect(build(:food)).to be_valid
   end
   it "is valid with a name and description" do
     # food = Food.new(
@@ -11,7 +12,7 @@ describe Food do
     #   price: 10000.0
     #   )
     # expect(food).to be_valid
-    expect(FactoryGirl.build(:food)).to be_valid
+    expect(build(:food)).to be_valid
   end
   it "is invalid without a name" do
     # food = Food.new(
@@ -21,7 +22,7 @@ describe Food do
     #   )
     # food.valid?
     # expect(food.errors[:name]).to include('can\'t be blank')
-    food = FactoryGirl.build(:food, name: nil)
+    food = build(:food, name: nil)
     food.valid?
     expect(food.errors[:name]).to include('can\'t be blank')
   end
@@ -33,7 +34,7 @@ describe Food do
     #   )
     # food.valid?
     # expect(food.errors[:description]).to include('can\'t be blank')
-    food = FactoryGirl.build(:food, description: nil)
+    food = build(:food, description: nil)
     food.valid?
     expect(food.errors[:description]).to include('can\'t be blank')
   end
@@ -50,8 +51,8 @@ describe Food do
     #   )
     # food2.valid?
     # expect(food2.errors[:name]).to include("has already been taken")
-    food1 = FactoryGirl.create(:food)
-    food2 = FactoryGirl.build(:food)
+    food1 = create(:food)
+    food2 = build(:food)
     food2.valid?
     expect(food2.errors[:name]).to include("has already been taken")
   end
